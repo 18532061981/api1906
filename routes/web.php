@@ -19,6 +19,9 @@ Route::prefix('/wx')->group(function () {
     Route::any('curl1','Test\TestController@curl1');
     Route::any('curl2','Test\TestController@curl2');
     Route::any('guzzle','Test\TestController@guzzle');
+    Route::any('count1','Test\TestController@count1');
+    Route::any('api2','Test\TestController@api2');
+    Route::any('api3','Test\TestController@api3');
 });
 
 
