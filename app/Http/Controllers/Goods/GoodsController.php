@@ -23,15 +23,19 @@ class GoodsController extends Controller
 
 
 
-        if($cache) {
-            echo "无缓存";
-
+        if($cache){
+            echo "有缓存:";echo "<br>";
+            $goods_info = json_decode($cache,true);
+            echo "<pre>";print_r($goods_info);echo "</pre>";
         }else{
-            echo "有缓存";
-
-            $goods_info = Goods::where(['id'=>$goods_id])->first();
-            echo "<pre>";print_r($goods_info->toArray());echo "</pre>";
-            $arr = $goods_info->toArray();
+            echo "无缓存:";echo "<br>";
+            $goodsinfo = GoodsModel::where(['id'=>$goods_id])->first();
+            // $arr = $goods_info->toArray();
+            $j_goods_info  = json_encode($goodsinfo->toArray());
+            Redis::set($goods_key,$j_goods_info);
+            Redis::expire($goods_key,300);
+            echo "<pre>";print_r($goodsinfo);echo "</pre>";
+        }
 
 
 
