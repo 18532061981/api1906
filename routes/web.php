@@ -14,14 +14,37 @@
 Route::get('/', function () {
     return view('welcome');
 });
-Route::prefix('/wx')->group(function () {
-    Route::any('access_token','Test\TestController@access_token');
-    Route::any('curl1','Test\TestController@curl1');
-    Route::any('curl2','Test\TestController@curl2');
-    Route::any('guzzle','Test\TestController@guzzle');
-    Route::any('count1','Test\TestController@count1');
-    Route::any('api2','Test\TestController@api2');
-    Route::any('api3','Test\TestController@api3');
+//测试
+Route::prefix('/test')->middleware('ApiFilter')->group(function(){
+    Route::get('/redis','Testcontroller@testredis');   //redis
+    Route::get('/file_get_contents','Testcontroller@file_get_contents');   //file_get_contents  get
+    Route::get('/curl','Testcontroller@curl');   //curl   get
+    Route::get('/curlPost','Testcontroller@curlPost');
+    Route::get('/Guzzle','Testcontroller@Guzzle');  //Guzzle   get
+    Route::get('/GuzzlePost','Testcontroller@GuzzlePost');  //Guzzle    Post
+
+    Route::post('/post1','Testcontroller@post1');
+    Route::post('/post2','Testcontroller@post2');
+    Route::post('/post3','Testcontroller@post3');
+    Route::post('/upload','Testcontroller@upload');
+
+    Route::post('/guzzleget','Testcontroller@guzzleget');
+    Route::post('/guzzlepost1','Testcontroller@guzzlepost1');
+    Route::post('/guzzleupload','Testcontroller@guzzleupload');
+    Route::post('/guzzlejson','Testcontroller@guzzlejson');
+
+    Route::get('/redisfs','Testcontroller@redisfs');
+
+    Route::get('/md5get','Testcontroller@md5get');
+    Route::get('/md5shou','Testcontroller@md5shou');
+
+    Route::get('/verifySign','Testcontroller@verifySign');
+
+    Route::get('/decrypt','Testcontroller@decrypt');
+
+    Route::get('/decrypt1','Testcontroller@decrypt1');  //对称
+
+
 });
 
 
