@@ -16,35 +16,37 @@ Route::get('/', function () {
 });
 //测试
 Route::prefix('/test')->middleware('ApiFilter')->group(function(){
-    Route::get('/redis','Testcontroller@testredis');   //redis
-    Route::get('/file_get_contents','Testcontroller@file_get_contents');   //file_get_contents  get
-    Route::get('/curl','Testcontroller@curl');   //curl   get
-    Route::get('/curlPost','Testcontroller@curlPost');
-    Route::get('/Guzzle','Testcontroller@Guzzle');  //Guzzle   get
-    Route::get('/GuzzlePost','Testcontroller@GuzzlePost');  //Guzzle    Post
+    Route::get('/redis','Test\Testcontroller@testredis');   //redis
+    Route::get('/file_get_contents','Test\Testcontroller@file_get_contents');   //file_get_contents  get
+    Route::get('/curl','Test\Testcontroller@curl');   //curl   get
+    Route::get('/curlPost','Test\Testcontroller@curlPost');
+    Route::get('/Guzzle','Test\Testcontroller@Guzzle');  //Guzzle   get
+    Route::get('/GuzzlePost','Test\Testcontroller@GuzzlePost');  //Guzzle    Post
 
-    Route::post('/post1','Testcontroller@post1');
-    Route::post('/post2','Testcontroller@post2');
-    Route::post('/post3','Testcontroller@post3');
-    Route::post('/upload','Testcontroller@upload');
+    Route::post('/post1','Test\Testcontroller@post1');
+    Route::post('/post2','Test\Testcontroller@post2');
+    Route::post('/post3','Test\Testcontroller@post3');
+    Route::post('/upload','Test\Testcontroller@upload');
 
-    Route::post('/guzzleget','Testcontroller@guzzleget');
-    Route::post('/guzzlepost1','Testcontroller@guzzlepost1');
-    Route::post('/guzzleupload','Testcontroller@guzzleupload');
-    Route::post('/guzzlejson','Testcontroller@guzzlejson');
+    Route::post('/guzzleget','Test\Testcontroller@guzzleget');
+    Route::post('/guzzlepost1','Test\Testcontroller@guzzlepost1');
+    Route::post('/guzzleupload','Test\Testcontroller@guzzleupload');
+    Route::post('/guzzlejson','Test\Testcontroller@guzzlejson');
 
-    Route::get('/redisfs','Testcontroller@redisfs');
+    Route::get('/redisfs','Test\Testcontroller@redisfs');
 
-    Route::get('/md5get','Testcontroller@md5get');
-    Route::get('/md5shou','Testcontroller@md5shou');
+    Route::get('/md5get','Test\Testcontroller@md5get');
+    Route::get('/md5shou','Test\Testcontroller@md5shou');
 
-    Route::get('/verifySign','Testcontroller@verifySign');
+    Route::get('/verifySign','Test\Testcontroller@verifySign');
 
-    Route::get('/decrypt','Testcontroller@decrypt');
+    Route::get('/decrypt','Test\Testcontroller@decrypt');
 
-    Route::get('/decrypt1','Testcontroller@decrypt1');  //对称
+    Route::get('/decrypt1','Test\Testcontroller@decrypt1');  //对称
 
-
+    Route::get('/verifySign','Test\Testcontroller@verifySign');
+    Route::get('/decrypt','Test\Testcontroller@decrypt');
+    Route::get('/task','Test\Testcontroller@task');
 });
 
 

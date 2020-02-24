@@ -296,4 +296,82 @@ class Testcontroller extends Controller
             echo "验证失败";
         }
     }
+    //接收数据 验证签名
+    public function verifySign()
+    {
+        $key = '1907';
+
+        $data = $_GET['data']; //接收到的数据
+        $sign = $_GET['sign']; //接收到的签名
+
+        //验签
+        $sign1 = md5($data.$key);
+        echo "接收端计算的签名:".$sign1;echo "<br>";
+        //与接收到的签名对比
+        if($sign1 == $sign)
+        {
+            echo "验签通过 数据完整";
+        }else{
+            echo "验签失败 数据损坏";
+        }
+    }
+
+    //解密
+    public function decrypt()
+    {
+        $data = $_GET['data'];
+
+        //解密
+        $length = strlen($data); //获取密文的长度
+
+        $str='';
+
+        for($i=0;$i<$length;$i++){
+            echo  $data[$i].'>'.ord($data[$i]);echo "<br>";
+            $code = ord($data[$i])-1;
+
+            echo "解密:".$data[$i].'>'.chr($code);echo "<br>";
+            $str .= chr($code);
+        }
+        echo "解密数据:".$str;
+    }
+
+    //验签加解密
+    public function task()
+    {
+        //验签  key必须相同
+        $key = '1907';
+        $data = $_GET['data']; //接收到的数据
+        $sign = $_GET['sign']; //接收到的签名
+
+
+        //加密
+        $method = 'aes-128-cbc'; //加算法
+        $iv = 'abc123456a123456';  //vi 必须为16个字节 (16个ascii字符)
+        echo "已接收到的数据";
+        echo "<pre>";print_r($_GET);echo "</pre>";
+
+        echo "<hr>";
+
+        //base64编码
+        $c_data = base64_decode($data);
+        //解密
+        $dec_data = openssl_decrypt($c_data,$method,$key,OPENSSL_RAW_DATA,$iv);
+        echo "解密后的数据:";echo "<br>";
+        var_dump($dec_data);echo "<br>";
+
+        //验签
+        $sign1 = md5($dec_data.$key);
+        echo "接收端计算的签名:".$sign1;echo "<br>";
+
+        //与接收到的签名对比
+        if($sign1 == $sign)
+        {
+            echo "验签通过 数据完整";echo "<br>";
+        }else{
+            echo "验签失败 数据损坏";echo "<br>";
+        }
+    }
+
+
 }
