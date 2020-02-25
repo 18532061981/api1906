@@ -47,6 +47,12 @@ Route::prefix('/test')->middleware('ApiFilter')->group(function(){
     Route::get('/verifySign','Test\Testcontroller@verifySign');
     Route::get('/decrypt','Test\Testcontroller@decrypt');
     Route::get('/task','Test\Testcontroller@task');
+
+    Route::get('/test1','Test\Alipaycontroller@test1');
+    Route::get('/Connection','Test\Testcontroller@Connection');
+    Route::get('/verify','Test\Testcontroller@verify');
+
+
 });
 
 
